@@ -1,51 +1,39 @@
-import { createTheme } from "@mui/material/styles";
+import { blue, green, purple } from "@mui/material/colors";
 
-function getCssVarValue(name, fallback) {
-  if (typeof window !== "undefined") {
-    const value = getComputedStyle(document.documentElement).getPropertyValue(
-      name
-    );
-    return value.trim() || fallback;
-  }
-  return fallback;
-}
+const { createTheme, responsiveFontSizes } = require("@mui/material");
 
-export function createAppTheme(mode) {
-  return createTheme({
-    palette: {
-      mode,
-      primary: {
-        main: getCssVarValue(
-          "--color-primary",
-          mode === "light" ? "#1976d2" : "#90caf9"
-        ),
-      },
-      secondary: {
-        main: getCssVarValue(
-          "--color-secondary",
-          mode === "light" ? "#9c27b0" : "#ce93d8"
-        ),
-      },
-      background: {
-        default: getCssVarValue(
-          "--color-bg",
-          mode === "light" ? "#ffffff" : "#121212"
-        ),
-        paper: getCssVarValue(
-          "--color-surface",
-          mode === "light" ? "#f5f5f5" : "#1e1e1e"
-        ),
-      },
-      text: {
-        primary: getCssVarValue(
-          "--color-text-primary",
-          mode === "light" ? "#000" : "#fff"
-        ),
-        secondary: getCssVarValue(
-          "--color-text-secondary",
-          mode === "light" ? "#555" : "#aaa"
-        ),
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: purple[500],
+      dark: purple[800],
+    },
+    success: {
+      main: green[300],
+      dark: green[100],
+      light: green[500],
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+        },
       },
     },
-  });
-}
+    MuiFab: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.size === "large" && {
+            height: 20,
+            width: 35,
+          }),
+        }),
+      },
+    },
+  },
+});
+
+export default responsiveFontSizes(theme);
