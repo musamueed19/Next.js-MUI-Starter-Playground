@@ -13,6 +13,10 @@ const HomePage = () => {
       <Typography variant='body1'>Next.js + MUI Playground</Typography>
       <Typography variant='body2 text-gray-400'>Next.js + MUI Playground</Typography>
       <Button startIcon={<DeleteOutline />} >Delete</Button>
+
+
+
+      <Typography variant='h4'>Dark Mode Tutorial</Typography>
     </div>
   )
 }
